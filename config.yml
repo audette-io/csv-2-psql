@@ -1,6 +1,0 @@
-# Currently PSQL Supported Only
-database: 
-  host: localhost
-  user: postgres
-  passwd: secret-password
-  db: name-of-database
