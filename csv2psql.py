@@ -42,7 +42,5 @@ def get_db_connection(db_cfg):
 		print(error)
 
 
-# Set Global Variables
-
 if __name__ == '__main__':
 	start()
