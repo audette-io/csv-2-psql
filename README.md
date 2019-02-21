@@ -10,13 +10,18 @@ python3-pip
 ```
 
 ### Installing
-1. Enter VirualEnvironment 
-`source venv/bin/activate`
+1. ( optional ) Enter VirualEnvironment 
+```
+source venv/bin/activate
+```
 2. Install Pip Dependencies
-`pip isntall -r requirements.txt`
+```
+pip isntall -r requirements.txt
+```
 
 ### Configuration
-Open config.yml in your prefered text editor
+Open `config.yml` in your prefered text editor and fill in with specific db information.
+
 ```yml
 database: 
   host: localhost 	# enter the ip of machine runnign db
@@ -26,8 +31,7 @@ database:
 ```
 
 ### Running 
-The following command should be executed while inside the virtualenv
 ```
 python csv2psql.py <filename.csv>
 ```
-* Note That the Filename Match the Name of the Table Acquiring csv.
+* Note That the Filename MUST Match the Name of the Table Acquiring csv.
