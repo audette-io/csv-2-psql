@@ -1,0 +1,6 @@
+# Currently PSQL Supported Only
+database: 
+  host: localhost	# IP of Machine Running Database
+  user: postgres	# User Name With Role in Database
+  passwd: password	# Database Password
+  db: database-name	# Name of Database
