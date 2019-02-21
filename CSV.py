@@ -17,7 +17,7 @@ class CSV():
 					entries.append(row)
 		except(Exception) as e:
 			print(e)
-			print('Cannot Read File,')
+			print('\033[91m Cannot Read File,')
 			print('please make sure csv file follows the convention')
 			exit(1)
 		return schema, entries

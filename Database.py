@@ -14,7 +14,7 @@ class Database():
 				cfg = yaml.load(ymlfile)
 				return cfg['database']
 		except(Exception) as e:
-			print('Error Opening Config File')
+			print('\033[91m Error Opening Config File')
 			print('error: ', e)
 			exit(1)
 	
@@ -26,10 +26,9 @@ class Database():
 			conn = psycopg2.connect(host=self.cfg['host'], database=self.cfg['db'], 
 									user=self.cfg['user'], password=self.cfg['passwd'])
 			cur = conn.cursor()
-		
 		# If Error Connecting, Print Given Error
 		except(Exception, psycopg2.DatabaseError) as error:
-			print('Error Connecting to Database')
+			print('\033[91m Error Connecting to Database')
 			print('error: ', error)
 			exit(1)
 		return conn, cur	
@@ -39,5 +38,10 @@ class Database():
 			self.conn.close()
 			print('Database Connection is Closed...')
 	
-	def insert(self, item):
+	def insert(self, entry):
+		# Remove quotes from schema
+		schema = str(tuple(self.schema)).replace("'", "")
+		statement = "INSERT INTO pythontester {0} VALUES {1}".format(schema, tuple(entry))
+		self.cur.execute(statement)
+		self.conn.commit()
 		pass	

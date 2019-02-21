@@ -12,7 +12,7 @@ def start():
 		print('Inserting Entries')
 		for entry in csv.get_entries():
 			database.insert(entry)
-		print('Done Inserting')
+		print('\033[92m Done Inserting')
 
 	except(Exception) as e:
 		print(e)
