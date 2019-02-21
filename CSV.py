@@ -8,6 +8,7 @@ class CSV():
 	
 	def open_csv(self):
 		schema, entries = [], []
+
 		try:
 			with open(self.file_name, newline='\n') as csvfile:
 				reader = csv.reader(csvfile, delimiter=',')
@@ -15,11 +16,13 @@ class CSV():
 				schema = csv_list[0]
 				for row in csv_list[1:]:	
 					entries.append(row)
+
 		except(Exception) as e:
 			print(e)
 			print('\033[91m Cannot Read File,')
-			print('please make sure csv file follows the convention')
+			print('please make sure csv file follows the convention stated in documentation')
 			exit(1)
+
 		return schema, entries
 
 	def get_file_name(self):

@@ -9,6 +9,7 @@ class Database():
 		self.conn, self.cur = self.make_connection()
 	
 	def get_configuration(self):
+
 		try:
 			with open('config.yml', 'r') as ymlfile:
 				cfg = yaml.load(ymlfile)
@@ -28,11 +29,13 @@ class Database():
 			conn = psycopg2.connect(host=self.cfg['host'], database=self.cfg['db'], 
 									user=self.cfg['user'], password=self.cfg['passwd'])
 			cur = conn.cursor()
+		
 		# If Error Connecting, Print Given Error
 		except(Exception, psycopg2.DatabaseError) as error:
 			print('\033[91m Error Connecting to Database')
 			print('error: ', error)
 			exit(1)
+		
 		return conn, cur	
 
 	def close_connection(self):
