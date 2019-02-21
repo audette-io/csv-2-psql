@@ -31,3 +31,8 @@ database:
 python csv2psql.py <filename.csv>
 ```
 * Note That the Filename MUST Match the Name of the Table Acquiring csv.
+
+## Gotchas
+1. Columns must match db type for that column
+2. When populating a db, order of table population matters
+
