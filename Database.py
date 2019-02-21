@@ -44,15 +44,32 @@ class Database():
 		if self.conn is not None:
 			self.conn.close()
 			print('Database Connection is Closed...')
-	
+
+	def format_entry(self, entry):
+		indexes = []
+		entry_schema = self.schema.copy()
+		for i in range(len(entry)):
+			if not entry[i]:
+				indexes.append(i)
+		for i in indexes:
+			del entry[i]
+			del entry_schema[i]
+		return entry_schema, entry
+
 	def insert(self, entry):
+		schema, entry = self.format_entry(entry)
+		short_tuple = len(entry) is 1
 		# Remove quotes from schema
-		schema = str(tuple(self.schema)).replace("'", "")
+		schema = str(tuple(schema)).replace("'", "")
 		# Replace empty columns with 'null'
-		entry = str(tuple(entry)).replace("''", 'null')
+		entry = str(tuple(entry))
+		# If a tuple is 'short' the trailing comma must be removed
+		if short_tuple:
+			schema = schema.replace(",", "")
+			entry = entry.replace(",", "")
 		# Generate Statement for Insert
 		statement = "INSERT INTO {0} {1} VALUES {2}".format(self.table_name, schema, entry)
-		
+		print(statement) 	# Here to display progress	
 		try: 
 			self.cur.execute(statement)
 		except(Exception) as e:
