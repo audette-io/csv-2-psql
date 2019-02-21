@@ -35,4 +35,7 @@ python3 csv2psql.py <filename.csv>
 ## Gotchas
 1. Columns must match db type for that column
 2. When populating a db, order of table population matters
-
+3. If there are issues installing PyYAML, try downgrading pip
+```
+sudo -H pip3 install pip==8.1.1
+```
