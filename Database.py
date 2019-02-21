@@ -74,7 +74,5 @@ class Database():
 			self.cur.execute(statement)
 		except(Exception) as e:
 			print(e)
+			self.conn.rollback()
 			self.failure_count = self.failure_count + 1
-		finally:
-			self.conn.commit()
-		pass	
