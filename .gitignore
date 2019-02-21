@@ -2,3 +2,4 @@ config.yml
 *.yml
 *.csv
 __pycache__/*
+venv/*
