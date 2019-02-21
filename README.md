@@ -10,11 +10,7 @@ python3-pip
 ```
 
 ### Installing
-1. ( optional ) Enter VirualEnvironment 
-```
-source venv/bin/activate
-```
-2. Install Pip Dependencies
+Install Pip Dependencies
 ```
 pip isntall -r requirements.txt
 ```
