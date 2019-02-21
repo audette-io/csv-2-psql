@@ -12,7 +12,7 @@ python3-pip
 ### Installing
 Install Pip Dependencies
 ```
-pip isntall -r requirements.txt
+pip3 isntall -r requirements.txt
 ```
 
 ### Configuration
@@ -28,7 +28,7 @@ database:
 
 ### Running 
 ```
-python csv2psql.py <filename.csv>
+python3 csv2psql.py <filename.csv>
 ```
 * Note That the Filename MUST Match the Name of the Table Acquiring csv.
 
