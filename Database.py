@@ -13,6 +13,7 @@ class Database():
 			with open('config.yml', 'r') as ymlfile:
 				cfg = yaml.load(ymlfile)
 				return cfg['database']
+
 		except(Exception) as e:
 			print('\033[91m Error Opening Config File')
 			print('error: ', e)
@@ -21,6 +22,7 @@ class Database():
 	def make_connection(self):
 		print('Connecting to Database...')
 		conn, cur = None, None
+
 		try:
 			# Connect to db
 			conn = psycopg2.connect(host=self.cfg['host'], database=self.cfg['db'], 
@@ -39,9 +41,17 @@ class Database():
 			print('Database Connection is Closed...')
 	
 	def insert(self, entry):
+
 		# Remove quotes from schema
 		schema = str(tuple(self.schema)).replace("'", "")
+
+		# Generate Statement for Insert
 		statement = "INSERT INTO pythontester {0} VALUES {1}".format(schema, tuple(entry))
-		self.cur.execute(statement)
-		self.conn.commit()
+		
+		try: 
+			self.cur.execute(statement)
+		except(Exception) as e:
+			print(e)
+		finally:
+			self.conn.commit()
 		pass	
