@@ -7,7 +7,8 @@ class Database():
 		self.table_name = table_name
 		self.cfg = self.get_configuration()
 		self.conn, self.cur = self.make_connection()
-	
+		self.failure_count = 0	
+
 	def get_configuration(self):
 
 		try:
@@ -39,22 +40,24 @@ class Database():
 		return conn, cur	
 
 	def close_connection(self):
+		print('Total Failed Entries: ', self.failure_count)
 		if self.conn is not None:
 			self.conn.close()
 			print('Database Connection is Closed...')
 	
 	def insert(self, entry):
-
 		# Remove quotes from schema
 		schema = str(tuple(self.schema)).replace("'", "")
-
+		# Replace empty columns with 'null'
+		entry = str(tuple(entry)).replace("''", 'null')
 		# Generate Statement for Insert
-		statement = "INSERT INTO pythontester {0} VALUES {1}".format(schema, tuple(entry))
+		statement = "INSERT INTO {0} {1} VALUES {2}".format(self.table_name, schema, entry)
 		
 		try: 
 			self.cur.execute(statement)
 		except(Exception) as e:
 			print(e)
+			self.failure_count = self.failure_count + 1
 		finally:
 			self.conn.commit()
 		pass	
