@@ -2,7 +2,8 @@ import sys
 import csv
 
 class CSV():
-	def __init__(self):	
+	def __init__(self, args):	
+		self.args = args
 		self.file_name = self.get_file_name()
 		self.schema, self.entries = self.open_csv()
 	
@@ -28,8 +29,8 @@ class CSV():
 	def get_file_name(self):
 		file_name = None
 		try:
-			file_name = sys.argv[1]
-			self.table_name = file_name[:-4]
+			file_name = self.args.file 
+			self.table_name = self.args.file[:-4]
 		except(Exception) as e:
 			print('Please Enter a File Name as the First Arg')
 			exit(1)
