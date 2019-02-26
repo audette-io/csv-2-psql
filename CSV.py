@@ -8,20 +8,20 @@ class CSV():
 	
 	def open_csv(self):
 		schema, entries = [], []
+		if not self.args.copy:
+			try:
+				with open(self.file_name, newline='\n') as csvfile:
+					reader = csv.reader(csvfile, delimiter=',')
+					csv_list = list(reader)
+					schema = csv_list[0]
+					for row in csv_list[1:]:	
+						entries.append(row)
 
-		try:
-			with open(self.file_name, newline='\n') as csvfile:
-				reader = csv.reader(csvfile, delimiter=',')
-				csv_list = list(reader)
-				schema = csv_list[0]
-				for row in csv_list[1:]:	
-					entries.append(row)
-
-		except(Exception) as e:
-			print(e)
-			print('\033[91m Cannot Read File,')
-			print('please make sure csv file follows the convention stated in documentation')
-			exit(1)
+			except(Exception) as e:
+				print(e)
+				print('\033[91m Cannot Read File,')
+				print('please make sure csv file follows the convention stated in documentation')
+				exit(1)
 
 		return schema, entries
 
