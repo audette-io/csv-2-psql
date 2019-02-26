@@ -8,6 +8,7 @@ class Database():
 		self.cfg = self.get_configuration()
 		self.conn, self.cur = self.make_connection()
 		self.failure_count = 0	
+		self.success_count = 0
 
 	def get_configuration(self):
 
@@ -40,7 +41,7 @@ class Database():
 		return conn, cur	
 
 	def close_connection(self):
-		print('Total Failed Entries: ', self.failure_count)
+		print('Total Failed Entries: {0} / {1}'.format(self.failure_count, self.success_count + self.failure_count))
 		if self.conn is not None:
 			self.conn.close()
 			print('Database Connection is Closed...')
@@ -55,7 +56,17 @@ class Database():
 			del entry[i]
 			del entry_schema[i]
 		return entry_schema, entry
-
+	def copy_csv(self):
+		statement = 'COPY {0} FROM \'/var/lib/postgresql/{0}.csv\' delimiter \',\' CSV HEADER'.format(self.table_name)
+		print(statement)
+		try: 
+			self.cur.execute(statement)
+			self.conn.commit()
+			print('Copy Succesful')
+		except(Exception) as e:
+			print(e)
+			self.conn.rollback()
+	
 	def insert(self, entry):
 		schema, entry = self.format_entry(entry)
 		short_tuple = len(entry) is 1
@@ -73,6 +84,7 @@ class Database():
 		try: 
 			self.cur.execute(statement)
 			self.conn.commit()
+			self.success_count = self.success_count + 1
 		except(Exception) as e:
 			print(e)
 			self.conn.rollback()
