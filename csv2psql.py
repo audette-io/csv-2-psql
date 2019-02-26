@@ -1,6 +1,5 @@
 from CSV import CSV
 from Database import Database
-
 from argparse import ArgumentParser
 
 # Init Argument Parser and Acquire Arguments
