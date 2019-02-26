@@ -72,6 +72,7 @@ class Database():
 		print(statement) 	# Here to display progress	
 		try: 
 			self.cur.execute(statement)
+			self.conn.commit()
 		except(Exception) as e:
 			print(e)
 			self.conn.rollback()
