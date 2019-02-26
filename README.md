@@ -26,6 +26,11 @@ database:
   db: timescale		# enter name of db csv is being loaded to 
 ```
 
+# For Psql Copy
+
+1. move all csv files into `/var/lib/postgresql/`
+2. make sure db user is a db super user
+
 ### Running 
 ```
 python3 csv2psql.py <filename.csv>
