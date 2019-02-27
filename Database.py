@@ -57,7 +57,7 @@ class Database():
 			del entry_schema[i]
 		return entry_schema, entry
 	def copy_csv(self):
-		statement = 'COPY {0} FROM \'/var/lib/postgresql/{0}.csv\' delimiter \',\' CSV HEADER'.format(self.table_name)
+		statement = 'COPY {0} FROM \'/var/lib/postgresql/csv_files/{0}.csv\' delimiter \',\' CSV HEADER'.format(self.table_name)
 		print(statement)
 		try: 
 			self.cur.execute(statement)
