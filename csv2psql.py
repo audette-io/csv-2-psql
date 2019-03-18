@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 
 # Init Argument Parser and Acquire Arguments
 parser = ArgumentParser()
-parser.add_argument('-p', '--path', dest='path', default='/var/lib/postgresql/csv_files/' help='Set the Path to the Csv Files that are Being Copied to Postgres')
+parser.add_argument('-p', '--path', dest='path', default='/var/lib/postgresql/csv_files/', help='Set the Path to the Csv Files that are Being Copied to Postgres')
 parser.add_argument('-c', '--copy', dest='copy', const=True, nargs='?', default=False, type=bool, help='Set Copy Flag if PSQL Copy Method Should be Used')
 parser.add_argument('-f', '--file', dest='file', help='Specify File Name of CSV Being Inserted')
 args = parser.parse_args()
@@ -17,7 +17,7 @@ def start():
 	try:
 		print('Inserting Entries')
 		if args.copy:
-			database.copy_csv();
+			database.copy_csv()
 		else:
 			for entry in csv.get_entries():
 				database.insert(entry)
