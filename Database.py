@@ -29,7 +29,7 @@ class Database():
 		try:
 			# Connect to db
 			conn = psycopg2.connect(host=self.cfg['host'], database=self.cfg['db'], 
-									user=self.cfg['user'], password=self.cfg['passwd'])
+									user=self.cfg['user'], password=self.cfg['passwd'], port=self.cfg['port'])
 			cur = conn.cursor()
 		
 		# If Error Connecting, Print Given Error
