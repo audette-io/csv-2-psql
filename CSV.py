@@ -19,7 +19,7 @@ class CSV():
 
 			except(Exception) as e:
 				print(e)
-				print('\033[91m Cannot Read File,')
+				print('\033[91m Cannot Read File,\033[0m')
 				print('please make sure csv file follows the convention stated in documentation')
 				exit(1)
 
@@ -31,7 +31,6 @@ class CSV():
 			file_name = self.args.file 
 			self.table_name = self.args.file[:-4]
 		except(Exception) as e:
-			print('Please Enter a File Name as the First Arg')
 			exit(1)
 		return file_name
 	

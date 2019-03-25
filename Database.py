@@ -18,7 +18,7 @@ class Database():
 				return cfg['database']
 
 		except(Exception) as e:
-			print('\033[91m Error Opening Config File')
+			print('\033[91m Error Opening Config File\033[0m')
 			print('error: ', e)
 			exit(1)
 	
@@ -34,7 +34,7 @@ class Database():
 		
 		# If Error Connecting, Print Given Error
 		except(Exception, psycopg2.DatabaseError) as error:
-			print('\033[91m Error Connecting to Database')
+			print('\033[91m Error Connecting to Database\033[0m')
 			print('error: ', error)
 			exit(1)
 		
@@ -52,6 +52,8 @@ class Database():
 		for i in range(len(entry)):
 			if not entry[i]:
 				indexes.append(i)
+        	
+                indexes.reverse()	        
 		for i in indexes:
 			del entry[i]
 			del entry_schema[i]
