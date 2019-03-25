@@ -18,8 +18,7 @@ def start():
 	try:
 		print('Inserting Entries')
 		if args.copy:
-			database.copy_csv();
-		
+			database.copy_csv()
 		else:
 			for entry in csv.get_entries():
 				database.insert(entry)
