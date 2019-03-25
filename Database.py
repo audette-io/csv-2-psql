@@ -53,7 +53,7 @@ class Database():
 			if not entry[i]:
 				indexes.append(i)
         	
-                indexes.reverse()	        
+		indexes.reverse()	        
 		for i in indexes:
 			del entry[i]
 			del entry_schema[i]
